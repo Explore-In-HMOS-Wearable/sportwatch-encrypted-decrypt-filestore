@@ -1,0 +1,10 @@
+<div class="container" onswipe="appClose">
+    <text class="text-s">Encrypted data:</text>
+    <text class="text-m">{{ encryptedText ? encryptedText : "No Encrypted Data" }}</text>
+    <input class="button" type="button" value="Generate Encrypted Data and Save to File" onclick="encryptAndWriteFile">
+    </input>
+    <text class="text-m">{{ saveFileResult ? saveFileResult : "No Saved File" }}</text>
+    <input class="button" type="button" value="Read from file and decrypt" onclick="decryptAndReadFile"></input>
+    <text class="text-s">Decrypted data:</text>
+    <text class="text-decrypted">Decrypted data: \n{{ decryptedText ? decryptedText : "No Decrypted Data" }}</text>
+</div>
