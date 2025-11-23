@@ -1,9 +1,9 @@
 import file from '@system.file'
 import { decryptProcess } from '../crypto/rsa'
 
-const encrptedFilesFolderPath = "internal://app/encrptedfiles/"
+const encrptedFilesFolderPath = 'internal://app/encrptedfiles/'
 
-export const encryptedFilePath = encrptedFilesFolderPath + "encrypted.txt"
+export const encryptedFilePath = encrptedFilesFolderPath + 'encrypted.txt'
 
 const ensurePathExist = () => {
     file.mkdir({
@@ -12,7 +12,7 @@ const ensurePathExist = () => {
 }
 
 export const fileUriToIndex = (uri) => {
-    const index = uri.split(".")[0];
+    const index = uri.split('.')[0];
     return parseInt(index);
 }
 
@@ -23,10 +23,10 @@ const storeEncryptedData = (arr, saveFileResCallback) => {
         buffer: arr,
         encoding: 'UTF-8',
         success: () => {
-            saveFileResCallback("File successfully saved.")
+            saveFileResCallback('File successfully saved.')
         },
         fail: (err, code) => {
-            console.log(`Failed save file: ${err}, code: ${code}`)
+            console.info(`Failed save file: ${err}, code: ${code}`)
             saveFileResCallback(`Failed save file: ${err}, code: ${code}`)
         }
     })
@@ -60,7 +60,6 @@ const readEncryptedData = (getFileResCallback) => {
         success: (content) => {
             encryptedData = content.buffer
             let decrypted = decryptProcess(encryptedData)
-            console.log("aaaa" + decrypted)
             getFileResCallback(decrypted)
         },
         fail: (err, errCode) => {

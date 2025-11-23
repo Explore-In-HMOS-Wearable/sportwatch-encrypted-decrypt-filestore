@@ -1,16 +1,16 @@
 import app from '@system.app';
 import { isFileExist, readEncryptedData, storeEncryptedData } from '../../store/store';
-import { decryptProcess, encryptProcess, generateRSAKey, isKeyItemExist } from '../../crypto/rsa';
+import { encryptProcess, generateRSAKey, isKeyItemExist } from '../../crypto/rsa';
 
-let RSA_KEY_ALIAS = "RSA_KEY_ALIAS"
+let RSA_KEY_ALIAS = 'RSA_KEY_ALIAS'
 
 export default {
     data: {
         title: '',
         random: null,
-        saveFileResult: "",
-        encryptedText: "",
-        decryptedText: ""
+        saveFileResult: '',
+        encryptedText: '',
+        decryptedText: ''
     },
 
     onInit() {
@@ -21,8 +21,7 @@ export default {
 
     async encryptAndWriteFile() {
         isKeyItemExist(RSA_KEY_ALIAS, (isKeyExist) => {
-            console.log("Is Key Item: " + isKeyExist);
-
+            console.info(`Is Key Item: ${isKeyExist}`);
             if (isKeyExist) {
                 this.storeEncryptedData();
                 return;
@@ -50,7 +49,7 @@ export default {
     decryptAndReadFile() {
         readEncryptedData((content) => {
             if (!content) {
-                this.decryptedText = "No Encrypted Data"
+                this.decryptedText = 'No Encrypted Data'
                 return;
             }
             this.decryptedText = content
@@ -66,7 +65,7 @@ export default {
     },
 
     appClose(e) {
-        if (e.direction == "right") {
+        if (e.direction === 'right') {
             app.terminate();
         }
     }

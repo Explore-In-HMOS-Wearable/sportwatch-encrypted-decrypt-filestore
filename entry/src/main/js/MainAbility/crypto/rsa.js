@@ -1,6 +1,6 @@
 import huks from '@ohos.security.huks';
 
-let RSA_KEY_ALIAS = "RSA_KEY_ALIAS"
+let RSA_KEY_ALIAS = 'RSA_KEY_ALIAS'
 const HUKS_RSA_KEY_SIZE_1024 = 1024;
 let plainText = 'HELLO HUAWEI';
 let cipherText = '';
@@ -30,7 +30,7 @@ export function generateRSAKey(rsaKeyAlias, callback) {
     huks.generateKeyItem(rsaKeyAlias, options, (err, data) => {
         if (err) {
             huksInfo = 'generateRSAKey return code:' + err.code + ' ： ' + err.message;
-            console.log("generateRSAKey error" + huksInfo)
+            console.error(`generateRSAKey return code: ${huksInfo}`)
             callback(false)
         }
         huksInfo = 'The key has been generated:' + JSON.stringify(data);
@@ -86,18 +86,18 @@ export function encryptProcess() {
                         'encryptProcess init abortSession return code:' + abortErr.code + ' ： ' + abortErr.message;
                 }
             });
-            console.log("initSession log" + huksInfo)
+            console.info(`initSession log: ${huksInfo}`)
         } else {
             handle = initData.handle;
         }
     });
 
     if (!ret) {
-        console.log(huksInfo)
+        console.info(huksInfo)
     }
 
     huks.finishSession(handle, finishOptions, (finishErr, finishData) => {
-        console.log("after finish session")
+        console.info('after finish session')
         if (finishErr) {
             ret = false;
             huksInfo = 'encryptProcess finishSession return code:' + finishErr.code + ' ： ' + finishErr.message;
@@ -109,7 +109,6 @@ export function encryptProcess() {
             });
         } else {
             huksInfo = finishData.outData;
-            // console.log("cipherText" + huksInfo)
         }
     });
     return huksInfo;
@@ -233,7 +232,6 @@ export function decryptProcess(input) {
     return huksInfo;
 }
 
-
 export function isKeyItemExist(keyAlias, callback) {
     let emptyOptions = {
         properties: []
@@ -247,7 +245,6 @@ export function isKeyItemExist(keyAlias, callback) {
         }
     });
 }
-
 
 export default {
     generateRSAKey,
