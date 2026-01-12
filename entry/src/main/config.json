@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "com.hmosdemos.encryptedfilestore",
+    "bundleName": "com.hmosdemos.lite_wearable.sportwatch_howto_do_file_operations",
     "vendor": "hmosdemos",
     "version": {
       "code": 1000000,

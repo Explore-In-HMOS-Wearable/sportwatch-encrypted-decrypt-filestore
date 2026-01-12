@@ -29,11 +29,11 @@ export function generateRSAKey(rsaKeyAlias, callback) {
     let options = { properties: getRSAGenProperties() };
     huks.generateKeyItem(rsaKeyAlias, options, (err, data) => {
         if (err) {
-            huksInfo = 'generateRSAKey return code:' + err.code + ' ： ' + err.message;
+            huksInfo = `generateRSAKey return code: ${err.code}:${err.message}`;
             console.error(`generateRSAKey return code: ${huksInfo}`)
             callback(false)
         }
-        huksInfo = 'The key has been generated:' + JSON.stringify(data);
+        huksInfo = `The key has been generated:${JSON.stringify(data)}`;
         callback(true)
     });
 }
@@ -78,12 +78,11 @@ export function encryptProcess() {
     }
     huks.initSession(RSA_KEY_ALIAS, initOptions, (initErr, initData) => {
         if (initErr) {
-            huksInfo = 'encryptProcess initSession return code:' + initErr.code + ' ： ' + initErr.message;
+            huksInfo = `encryptProcess initSession return code:${initErr.code}:${initErr.message}`;
             ret = false;
             huks.abortSession(initData.handle, initOptions, (abortErr, abortData) => {
                 if (abortErr) {
-                    huksInfo =
-                        'encryptProcess init abortSession return code:' + abortErr.code + ' ： ' + abortErr.message;
+                    huksInfo = `encryptProcess init abortSession return code:${abortErr.code}:${abortErr.message}`;
                 }
             });
             console.info(`initSession log: ${huksInfo}`)
@@ -100,11 +99,10 @@ export function encryptProcess() {
         console.info('after finish session')
         if (finishErr) {
             ret = false;
-            huksInfo = 'encryptProcess finishSession return code:' + finishErr.code + ' ： ' + finishErr.message;
+            huksInfo = `encryptProcess finishSession return code:${finishErr.code}:${finishErr.message}`;
             huks.abortSession(handle, finishOptions, (abortErr, abortData) => {
                 if (abortErr) {
-                    huksInfo =
-                        'encryptProcess finish  abortSession return code:' + abortErr.code + ' ： ' + abortErr.message;
+                    huksInfo = `encryptProcess finish  abortSession return code:${abortErr.code}: ${abortErr.message}`;
                 }
             });
         } else {
@@ -179,12 +177,11 @@ export function decryptProcess(input) {
     }
     huks.initSession(RSA_KEY_ALIAS, initOptions, (initErr, initData) => {
         if (initErr) {
-            huksInfo = 'decryptProcess initSession return code:' + initErr.code + ' ： ' + initErr.message;
+            huksInfo = `decryptProcess initSession return code:${initErr.code}: ${initErr.message}`;
             ret = false;
             huks.abortSession(initData.handle, initOptions, (abortErr, abortData) => {
                 if (abortErr) {
-                    huksInfo =
-                        'decryptProcess init abortSession return code:' + abortErr.code + ' ： ' + abortErr.message;
+                    huksInfo = `decryptProcess init abortSession return code:${abortErr.code}: ${abortErr.message}`;
                 }
             });
         } else {
@@ -196,12 +193,11 @@ export function decryptProcess(input) {
     }
     huks.updateSession(handle, updateOptions, (updateErr, updateData) => {
         if (updateErr) {
-            huksInfo = 'decryptProcess updateSession return code:' + updateErr.code + ' ： ' + updateErr.message;
+            huksInfo = `decryptProcess updateSession return code:${updateErr.code}: ${updateErr.message}`;
             ret = false;
             huks.abortSession(handle, updateOptions, (abortErr, abortData) => {
                 if (abortErr) {
-                    huksInfo = 'decryptProcess updateSession abortSession return code:' + abortErr.code + ' ： ' +
-                    abortErr.message;
+                    huksInfo = `decryptProcess updateSession abortSession return code:${abortErr.code}: ${abortErr.message}`;
                 }
             });
         }
@@ -213,11 +209,10 @@ export function decryptProcess(input) {
     huks.finishSession(handle, finishOptions, (finishErr, finishData) => {
         if (finishErr) {
             ret = false;
-            huksInfo = 'decryptProcess finishSession return code:' + finishErr.code + ' ： ' + finishErr.message;
+            huksInfo = `decryptProcess finishSession return code:${finishErr.code}: ${finishErr.message}`;
             huks.abortSession(handle, finishOptions, (abortErr, abortData) => {
                 if (abortErr) {
-                    huksInfo =
-                        'decryptProcess finish  abortSession return code:' + abortErr.code + ' ： ' + abortErr.message;
+                    huksInfo = `decryptProcess finish  abortSession return code:${abortErr.code}: ${abortErr.message}`;
                 }
             });
         } else {

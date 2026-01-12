@@ -24,10 +24,10 @@ This app is a demonstration of RSA encryption and decryption on HarmonyOS. It in
 
 - **Language**: JavaScript (Huawei LiteWearable)
 - **Tools**: Huawei DevEco Studio IDE 5.1.1.840
-- **Libraries**: 
-  - `@system.file`, 
-  - `@ohos.security.huks`,
-  - `@system.app`
+- **Libraries**:
+  - [`@system.file`](https://developer.huawei.com/consumer/en/doc/harmonyos-references/js-apis-system-storage)
+  - [`@ohos.security.huks`](https://developer.huawei.com/consumer/en/doc/harmonyos-references/js-apis-huks)
+  - [`@system.app`](https://developer.huawei.com/consumer/en/doc/harmonyos-references/js-apis-system-app)
 
 ## Diagrams - Process
 1. User clicks "Generate Encrypted Data and Save to File"
@@ -39,6 +39,7 @@ This app is a demonstration of RSA encryption and decryption on HarmonyOS. It in
 7. Reads the encrypted data from the file
 8. Decrypts the data and displays it
 
+# Directory Structure
 ```
 └───MainAbility
     │   app.js
@@ -68,10 +69,6 @@ This app is a demonstration of RSA encryption and decryption on HarmonyOS. It in
 - Huawei Sport (Lite) Fit 3/4
 - Huawei Sport (Lite) D2
 - Huawei Sport (Lite) Ultimate
-
-# Documentation
-- [File store](https://developer.huawei.com/consumer/en/doc/harmonyos-references/js-apis-system-storage)
-- [Huawei HUKS Overview](https://developer.huawei.com/consumer/en/doc/harmonyos-references/js-apis-huks)
 
 # License
 **Encrypted File Store** is released under the MIT License.  

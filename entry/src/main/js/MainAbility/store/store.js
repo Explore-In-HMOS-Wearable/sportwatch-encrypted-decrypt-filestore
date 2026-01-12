@@ -3,11 +3,11 @@ import { decryptProcess } from '../crypto/rsa'
 
 const encrptedFilesFolderPath = 'internal://app/encrptedfiles/'
 
-export const encryptedFilePath = encrptedFilesFolderPath + 'encrypted.txt'
+export const encryptedFilePath = `${encrptedFilesFolderPath}encrypted.txt`
 
 const ensurePathExist = () => {
     file.mkdir({
-        uri: encrptedFilesFolderPath,
+        uri: encrptedFilesFolderPath
     })
 }
 
